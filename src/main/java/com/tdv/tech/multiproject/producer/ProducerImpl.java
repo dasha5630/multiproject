@@ -1,6 +1,5 @@
 package com.tdv.tech.multiproject.producer;
 
-import com.tdv.tech.multiproject.TelegramBot;
 import lombok.RequiredArgsConstructor;
 import org.jvnet.hk2.annotations.Service;
 import org.slf4j.Logger;
