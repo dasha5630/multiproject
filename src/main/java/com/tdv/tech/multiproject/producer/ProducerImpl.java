@@ -1,10 +1,10 @@
 package com.tdv.tech.multiproject.producer;
 
 import lombok.RequiredArgsConstructor;
-import org.jvnet.hk2.annotations.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
 import static com.tdv.tech.multiproject.utils.Context.TOPIC;
 
@@ -13,7 +13,8 @@ import static com.tdv.tech.multiproject.utils.Context.TOPIC;
 public class ProducerImpl implements Producer{
     public static Logger LOG = LoggerFactory.getLogger(ProducerImpl.class);
 
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
     @Override
     public void sendMessage(String topic, String message) {
         LOG.info(getFormat(message));

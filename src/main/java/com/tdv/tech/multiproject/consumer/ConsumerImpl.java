@@ -1,10 +1,10 @@
 package com.tdv.tech.multiproject.consumer;
 
 import com.tdv.tech.multiproject.service.CurrencyService;
-import org.jvnet.hk2.annotations.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
 import static com.tdv.tech.multiproject.utils.Context.GROUP_ID;
 import static com.tdv.tech.multiproject.utils.Context.TOPIC;
