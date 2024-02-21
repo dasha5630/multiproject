@@ -15,7 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @RequiredArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig botConfig;
-    public static Logger LOG = LoggerFactory.getLogger(TelegramBot.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TelegramBot.class);
 
     @Override
     public String getBotUsername() {
@@ -39,9 +39,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                 default -> {
                     try {
                         sendMessage(chatId, CurrencyService.getCurrencyRate(messageText));
-                    } catch (Exception e) {
+                    } catch (java.io.IOException | java.lang.InterruptedException e) {
                         sendMessage(chatId, "того что вы ищете нет");
-                        throw new RuntimeException(e);
+                        LOG.info(e.getMessage());
                     }
                 }
             }
@@ -119,7 +119,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            LOG.error("Telegram api error" + e);
+            LOG.error(String.format("Telegram api error %s", e));
         }
     }
 }

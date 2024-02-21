@@ -15,7 +15,7 @@ public class ConsumerImpl implements Consumer{
     public static Logger LOG = LoggerFactory.getLogger(ConsumerImpl.class);
     @Override
     @KafkaListener(topics = TOPIC, groupId = GROUP_ID)
-    public void consume(String message) throws Exception {
+    public void consume(String message) throws java.io.IOException, java.lang.InterruptedException {
         LOG.info(getFormat(message));
         LOG.info(CurrencyService.getCurrencyRate(message));
         System.out.println(getFormat(message));
